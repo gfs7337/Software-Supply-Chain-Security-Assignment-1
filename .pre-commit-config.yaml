@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: trufflehog
+        name: TruffleHog
+        entry: trufflehog git file://. --no-verification --since-commit HEAD --fail
+        language: system
+        types: [text]
