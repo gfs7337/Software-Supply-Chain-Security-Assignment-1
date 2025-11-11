@@ -9,6 +9,7 @@ license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "cryptography (>=46.0.3,<47.0.0)"
 ]
 
 
@@ -24,7 +25,9 @@ dev = [
     "flake8 (>=7.3.0,<8.0.0)",
     "pylint (>=4.0.2,<5.0.0)",
     "bandit (>=1.8.6,<2.0.0)",
-    "autodocstring (>=0.1.2,<0.2.0)"
+    "autodocstring (>=0.1.2,<0.2.0)",
+    "pytest (>=9.0.0,<10.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)"
 ]
 
 [tool.black]
@@ -48,3 +51,8 @@ disable = ["C0114", "C0115", "C0116"]
 
 [tool.bandit]
 skips = ["B101"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra --cov=."
+testpaths = ["tests"]
