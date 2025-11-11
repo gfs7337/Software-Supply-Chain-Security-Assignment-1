@@ -1,0 +1,50 @@
+[project]
+name = "Software-Supply-Chain-Security"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Gary",email = "gfs7337@nyu.edu"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "mypy (>=1.18.2,<2.0.0)",
+    "black (>=25.11.0,<26.0.0)",
+    "ruff (>=0.14.4,<0.15.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "pylint (>=4.0.2,<5.0.0)",
+    "bandit (>=1.8.6,<2.0.0)",
+    "autodocstring (>=0.1.2,<0.2.0)"
+]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+
+[tool.pylint]
+disable = ["C0114", "C0115", "C0116"]
+
+[tool.bandit]
+skips = ["B101"]
