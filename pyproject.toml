@@ -1,34 +1,37 @@
-[project]
-name = "Software-Supply-Chain-Security"
+[tool.poetry]
+name = "sscs-monitor"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Gary",email = "gfs7337@nyu.edu"}
-]
-license = {text = "MIT"}
+description = "Python package for software supply chain monitoring"
+authors = ["Gary <gfs7337@nyu.edu>"]
+license = "MIT"
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "cryptography (>=46.0.3,<47.0.0)"
+
+packages = [
+    { include = "sscs_monitor", from = "src" }
 ]
 
+[tool.poetry.dependencies]
+python = ">=3.9,<3.14"
+requests = "^2.31"
+cryptography = "^46.0.3"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.18.2"
+black = "^25.11.0"
+ruff = "^0.14.4"
+flake8 = "^7.3.0"
+pylint = "^4.0.2"
+bandit = "^1.8.6"
+autodocstring = "^0.1.2"
+pytest = "^9.0.0"
+pytest-cov = "^7.0.0"
+
+[tool.poetry.scripts]
+sscs-monitor = "sscs_monitor.main:main"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[dependency-groups]
-dev = [
-    "mypy (>=1.18.2,<2.0.0)",
-    "black (>=25.11.0,<26.0.0)",
-    "ruff (>=0.14.4,<0.15.0)",
-    "flake8 (>=7.3.0,<8.0.0)",
-    "pylint (>=4.0.2,<5.0.0)",
-    "bandit (>=1.8.6,<2.0.0)",
-    "autodocstring (>=0.1.2,<0.2.0)",
-    "pytest (>=9.0.0,<10.0.0)",
-    "pytest-cov (>=7.0.0,<8.0.0)"
-]
 
 [tool.black]
 line-length = 88
