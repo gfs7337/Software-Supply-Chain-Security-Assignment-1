@@ -26,6 +26,7 @@ autodocstring = "^0.1.2"
 pytest = "^9.0.0"
 pytest-cov = "^7.0.0"
 trufflehog = "^2.2.1"
+cyclonedx-py = "^1.0.1"
 
 [tool.poetry.scripts]
 sscs-monitor = "sscs_monitor.main:main"
