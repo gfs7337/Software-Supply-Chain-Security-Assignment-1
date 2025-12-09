@@ -3,7 +3,6 @@
 from cryptography import x509
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding, ec, rsa
-from cryptography.hazmat.primitives.serialization import load_pem_public_key
 
 
 def extract_public_key(cert_bytes):
@@ -14,8 +13,7 @@ def extract_public_key(cert_bytes):
         cert = x509.load_pem_x509_certificate(cert_bytes)
         return cert.public_key()
     except Exception as e:
-        raise ValueError(f"Failed to extract public key: {e}")
-
+        raise ValueError(f"Failed to extract public key: {e}") from e
 
 def verify_artifact_signature(public_key, signature, artifact_bytes):
     """
@@ -32,4 +30,4 @@ def verify_artifact_signature(public_key, signature, artifact_bytes):
         else:
             raise TypeError("Unsupported public key type")
     except Exception as e:
-        raise ValueError(f"Signature verification failed: {e}")
+        raise ValueError(f"Signature verification failed: {e}") from e
