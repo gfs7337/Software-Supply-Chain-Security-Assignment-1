@@ -43,7 +43,7 @@ jobs:
       - name: Generate SBOM (cyclonedx-py)
         # Scans the poetry.lock file and outputs sbom.json
         run: |
-          poetry run cyclonedx-py --format json --output sbom.json --kind lock --force
+          poetry run cyclonedx-py poetry > sbom.json
         
       # --- Upload Artifacts & Create Release ---
       - name: Create GitHub Release and Upload Artifacts
