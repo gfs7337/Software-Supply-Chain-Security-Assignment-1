@@ -1,8 +1,8 @@
 import argparse
 import base64
 import json
-import hashlib # FIX: Moved before requests (standard library)
-import requests # FIX: Placed after standard library imports
+import hashlib  # FIX: Moved before requests (standard library)
+import requests  # FIX: Placed after standard library imports
 
 
 from .merkle_proof import verify_inclusion, verify_consistency
