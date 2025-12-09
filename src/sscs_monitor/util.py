@@ -5,6 +5,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding, ec, rsa
 from cryptography.hazmat.primitives.serialization import load_pem_public_key
 
+
 def extract_public_key(cert_bytes):
     """
     Extracts the public key from a PEM-encoded certificate.
@@ -15,6 +16,7 @@ def extract_public_key(cert_bytes):
     except Exception as e:
         raise ValueError(f"Failed to extract public key: {e}")
 
+
 def verify_artifact_signature(public_key, signature, artifact_bytes):
     """
     Verifies the signature of the artifact using the provided public key.
@@ -23,17 +25,10 @@ def verify_artifact_signature(public_key, signature, artifact_bytes):
     try:
         if isinstance(public_key, rsa.RSAPublicKey):
             public_key.verify(
-                signature,
-                artifact_bytes,
-                padding.PKCS1v15(),
-                hashes.SHA256()
+                signature, artifact_bytes, padding.PKCS1v15(), hashes.SHA256()
             )
         elif isinstance(public_key, ec.EllipticCurvePublicKey):
-            public_key.verify(
-                signature,
-                artifact_bytes,
-                ec.ECDSA(hashes.SHA256())
-            )
+            public_key.verify(signature, artifact_bytes, ec.ECDSA(hashes.SHA256()))
         else:
             raise TypeError("Unsupported public key type")
     except Exception as e:

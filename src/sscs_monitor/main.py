@@ -17,7 +17,9 @@ def fetch_entry(identifier):
         url = f"{REKOR_API}/api/v1/log/entries/{identifier}"
     response = requests.get(url)
     response.raise_for_status()
-    return list(response.json().values())[0] if identifier.isdigit() else response.json()
+    return (
+        list(response.json().values())[0] if identifier.isdigit() else response.json()
+    )
 
 
 def decode_body(entry):
