@@ -1,7 +1,7 @@
 import hashlib
 
 
-def verify_inclusion(leaf_hash, index, root_hash, tree_size, hashes):
+def verify_inclusion(leaf_hash, index, root_hash, _tree_size, hashes):
     computed_hash = leaf_hash
     for i, h in enumerate(hashes):
         if ((index >> i) & 1) == 0:

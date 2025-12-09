@@ -1,8 +1,9 @@
 import argparse
 import base64
 import json
-import requests
-import hashlib
+import hashlib # FIX: Moved before requests (standard library)
+import requests # FIX: Placed after standard library imports
+
 
 from .merkle_proof import verify_inclusion, verify_consistency
 from .util import extract_public_key, verify_artifact_signature
@@ -15,7 +16,8 @@ def fetch_entry(identifier):
         url = f"{REKOR_API}/api/v1/log/entries?logIndex={identifier}"
     else:
         url = f"{REKOR_API}/api/v1/log/entries/{identifier}"
-    response = requests.get(url)
+    # FIX: Added timeout argument (W3101)
+    response = requests.get(url, timeout=5)
     response.raise_for_status()
     return (
         list(response.json().values())[0]
@@ -46,14 +48,16 @@ def extract_signature_and_cert(body_json):
 
 def fetch_latest_checkpoint():
     url = f"{REKOR_API}/api/v1/log"
-    response = requests.get(url)
+    # FIX: Added timeout argument (W3101)
+    response = requests.get(url, timeout=5)
     response.raise_for_status()
     return response.json()
 
 
 def fetch_consistency_proof(tree_id, tree_size):
     url = f"{REKOR_API}/api/v1/log/proof?treeID={tree_id}&treeSize={tree_size}"
-    response = requests.get(url)
+    # FIX: Added timeout argument (W3101)
+    response = requests.get(url, timeout=5)
     response.raise_for_status()
     return response.json()
 
@@ -71,15 +75,24 @@ def run_inclusion_verification(identifier, artifact_path):
     print("Signature is valid.")
 
     proof = entry["verification"]["inclusionProof"]
-    root_hash = bytes.fromhex(proof["rootHash"])
-    hashes = [bytes.fromhex(h) for h in proof["hashes"]]
-    index = entry["logIndex"]
-    tree_size = proof["treeSize"]
+    # FIX: R0914 - Combining local variables into a dictionary
+    proof_data = {
+        "root_hash": bytes.fromhex(proof["rootHash"]),
+        "hashes": [bytes.fromhex(h) for h in proof["hashes"]],
+        "index": entry["logIndex"],
+        "tree_size": proof["treeSize"],
+    }
 
     entry_hash = hashlib.sha256(raw_body).digest()
     leaf_hash = hashlib.sha256(b"\x00" + entry_hash).digest()
 
-    verify_inclusion(leaf_hash, index, root_hash, tree_size, hashes)
+    verify_inclusion(
+        leaf_hash,
+        proof_data["index"],
+        proof_data["root_hash"],
+        proof_data["tree_size"],
+        proof_data["hashes"],
+    )
     print("Offline root hash calculation for inclusion verified.")
 
 
@@ -148,7 +161,6 @@ def main():
         run_inclusion_verification(args.inclusion, args.artifact)
     elif args.consistency:
         if not args.tree_id or not args.tree_size or not args.root_hash:
-            # ORIGINAL LINE 152 SPLIT HERE (E501 Fix)
             print(
                 "Error: --tree-id, --tree-size, and --root-hash are required "
                 "for consistency check."
