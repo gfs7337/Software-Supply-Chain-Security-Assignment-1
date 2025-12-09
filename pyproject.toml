@@ -11,7 +11,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.14"
+python = ">=3.10,<3.14"
 requests = "^2.31"
 cryptography = "^46.0.3"
 
@@ -42,7 +42,7 @@ select = ["E", "F", "B"]
 ignore = ["E501"]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = ">=3.13"
 ignore_missing_imports = true
 
 [tool.flake8]
@@ -59,3 +59,4 @@ skips = ["B101"]
 minversion = "6.0"
 addopts = "-ra --cov=."
 testpaths = ["tests"]
+
