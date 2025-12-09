@@ -4,7 +4,7 @@
 
 [![Build Status](https://github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1/actions/workflows/ci.yml/badge.svg)](https://github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1/actions/workflows/ci.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1/badge)](https://securityscorecards.dev/viewer/?uri=github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1)
-[![CII Best Practices](https://bestpractices.dev/badge/best_practices_basic.svg)](https://bestpractices.dev)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11591/badge)](https://www.bestpractices.dev/projects/11591)
 
 ---
 
