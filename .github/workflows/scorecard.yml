@@ -11,26 +11,32 @@ on:
     branches: [ main ]
     types: [ opened, synchronize ]
 
-# Give the workflow permissions to write security events and use OIDC
-permissions:
-  security-events: write
-  id-token: write
+# NOTE: The global permissions block is removed here (if it was present), 
+# and permissions are controlled at the job level instead.
 
 jobs:
   analysis:
     name: Scorecard analysis
     runs-on: ubuntu-latest
+    
+    # CRITICAL FIX: Explicitly restrict general token permissions to satisfy Scorecard's security check
+    permissions:
+      contents: read       # Allow reading repository code and history
+      security-events: write # Required by Scorecard Action to publish results to the Security tab
+      id-token: write      # Required by the Scorecard Action for verification
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          # Scorecard requires a depth of 0 (full history) for accurate scanning
+          # Required for accurate Scorecard checks that rely on commit history
           persist-credentials: false
           fetch-depth: 0 
 
       - name: Run OpenSSF Scorecard
-        uses: ossf/scorecard-action@v2.4.3 # <-- CORRECTED LINE
+        # The version tag must be included and permissions must be correct
+        uses: ossf/scorecard-action@v2.4.3 
         with:
           results_file: scorecard-results.json
-          # Uploads the results to the 'Security' tab of your repo
+          # This publishes the results that the badge pulls from
           publish_results: true
