@@ -148,8 +148,10 @@ def main():
         run_inclusion_verification(args.inclusion, args.artifact)
     elif args.consistency:
         if not args.tree_id or not args.tree_size or not args.root_hash:
+            # ORIGINAL LINE 152 SPLIT HERE (E501 Fix)
             print(
-                "Error: --tree-id, --tree-size, and --root-hash are required for consistency check."
+                "Error: --tree-id, --tree-size, and --root-hash are required "
+                "for consistency check."
             )
         else:
             run_consistency_verification(
