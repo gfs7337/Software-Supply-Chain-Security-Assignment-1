@@ -15,6 +15,7 @@ def extract_public_key(cert_bytes):
     except Exception as e:
         raise ValueError(f"Failed to extract public key: {e}") from e
 
+
 def verify_artifact_signature(public_key, signature, artifact_bytes):
     """
     Verifies the signature of the artifact using the provided public key.
