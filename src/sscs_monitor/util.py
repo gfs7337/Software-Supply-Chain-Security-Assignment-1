@@ -27,9 +27,7 @@ def verify_artifact_signature(public_key, signature, artifact_bytes):
                 signature, artifact_bytes, padding.PKCS1v15(), hashes.SHA256()
             )
         elif isinstance(public_key, ec.EllipticCurvePublicKey):
-            public_key.verify(
-                signature, artifact_bytes, ec.ECDSA(hashes.SHA256())
-            )
+            public_key.verify(signature, artifact_bytes, ec.ECDSA(hashes.SHA256()))
         else:
             raise TypeError("Unsupported public key type")
     except Exception as e:
