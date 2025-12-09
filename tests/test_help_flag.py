@@ -1,10 +1,9 @@
-import subprocess  # <-- This line is required to fix the NameError
-
-# ... other imports if any ...
+import subprocess
 
 
-def test_help_flag():
+def test_missing_repo_path():
     result = subprocess.run(
-        ["trufflehog", "--help"], capture_output=True, text=True
+        ["trufflehog", "git"], capture_output=True, text=True
     )
-    # ... rest of the test assertion ...
+    assert result.returncode != 0
+    assert "fatal: repository 'git' does not exist" in result.stderr.lower()
