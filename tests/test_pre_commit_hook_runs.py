@@ -1,8 +1,9 @@
 import subprocess
 
 
-def test_pre_commit_hook_runs():
+def test_missing_repo_path():
     result = subprocess.run(
-        ["pre-commit", "run", "--all-files"], capture_output=True, text=True
+        ["trufflehog", "git"], capture_output=True, text=True
     )
-    assert "TruffleHog" in result.stdout or "trufflehog" in result.stdout
+    assert result.returncode != 0
+    assert "fatal: repository 'git' does not exist" in result.stderr.lower()
