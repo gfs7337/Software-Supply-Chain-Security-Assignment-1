@@ -18,7 +18,9 @@ def fetch_entry(identifier):
     response = requests.get(url)
     response.raise_for_status()
     return (
-        list(response.json().values())[0] if identifier.isdigit() else response.json()
+        list(response.json().values())[0]
+        if identifier.isdigit()
+        else response.json()
     )
 
 
@@ -34,7 +36,9 @@ def extract_signature_and_cert(body_json):
         cert_b64 = body_json["spec"]["signature"]["publicKey"]["content"]
     except KeyError:
         sig_b64 = body_json["spec"]["data"]["signature"]["content"]
-        cert_b64 = body_json["spec"]["data"]["signature"]["publicKey"]["content"]
+        cert_b64 = body_json["spec"]["data"]["signature"]["publicKey"][
+            "content"
+        ]
     signature = base64.b64decode(sig_b64)
     cert = base64.b64decode(cert_b64)
     return signature, cert
@@ -105,7 +109,9 @@ def run_checkpoint_fetch():
                 {
                     "treeSize": checkpoint.get("treeSize"),
                     "rootHash": checkpoint.get("rootHash"),
-                    "timestamp": checkpoint.get("signedTreeHead", {}).get("timestamp"),
+                    "timestamp": checkpoint.get("signedTreeHead", {}).get(
+                        "timestamp"
+                    ),
                 },
                 indent=2,
             )
@@ -114,16 +120,27 @@ def run_checkpoint_fetch():
 
 def main():
     parser = argparse.ArgumentParser(description="Rekor log verifier")
-    parser.add_argument("--inclusion", help="Log index or UUID for inclusion proof")
+    parser.add_argument(
+        "--inclusion", help="Log index or UUID for inclusion proof"
+    )
     parser.add_argument("--artifact", help="Path to artifact file")
     parser.add_argument(
-        "--consistency", action="store_true", help="Run consistency verification"
+        "--consistency",
+        action="store_true",
+        help="Run consistency verification",
     )
     parser.add_argument("--tree-id", help="Previous checkpoint tree ID")
-    parser.add_argument("--tree-size", type=int, help="Previous checkpoint tree size")
-    parser.add_argument("--root-hash", help="Previous checkpoint root hash (hex)")
     parser.add_argument(
-        "-c", "--checkpoint", action="store_true", help="Fetch latest checkpoint"
+        "--tree-size", type=int, help="Previous checkpoint tree size"
+    )
+    parser.add_argument(
+        "--root-hash", help="Previous checkpoint root hash (hex)"
+    )
+    parser.add_argument(
+        "-c",
+        "--checkpoint",
+        action="store_true",
+        help="Fetch latest checkpoint",
     )
     args = parser.parse_args()
 
@@ -135,7 +152,9 @@ def main():
                 "Error: --tree-id, --tree-size, and --root-hash are required for consistency check."
             )
         else:
-            run_consistency_verification(args.tree_id, args.tree_size, args.root_hash)
+            run_consistency_verification(
+                args.tree_id, args.tree_size, args.root_hash
+            )
     elif args.checkpoint:
         run_checkpoint_fetch()
     else:
