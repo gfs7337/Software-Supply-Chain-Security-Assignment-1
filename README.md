@@ -1,63 +1,29 @@
-## Software Supply Chain Security – Assignment 1
+# Software Supply Chain Security – Assignment 1 🛡️
 
-## Project Description
-This repository contains the assignment for *Software Supply Chain Security – Assignment 1*.
-The goal of this project is to explore and demonstrate key concepts of securing the software supply chain — including managing dependencies, verifying artifact provenance, protecting the build and deployment pipeline, and reducing risk >
-The code and configurations here serve as a practical implementation and learning exercise for these supply-chain security topics.
+## 📊 Project Status and Security Assessment
+
+[![Build Status](https://github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1/actions/workflows/ci.yml/badge.svg)](https://github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1/badge)](https://securityscorecards.dev/viewer/?uri=github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1)
+[![CII Best Practices](https://bestpractices.dev/badge/best_practices_basic.svg)](https://bestpractices.dev)
 
 ---
 
-## Installation Steps
-Follow these steps to install and set up the project:
+## 📝 Project Description
+This repository contains the practical implementation for **Software Supply Chain Security – Assignment 1**.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1.git
-   cd Software-Supply-Chain-Security-Assignment-1
+The goal of this project is to explore and demonstrate key concepts of securing the software supply chain, including:
+* **Dependency Management:** Utilizing **Poetry** for isolated and defined dependency resolution.
+* **Artifact Provenance:** Generating and attesting **SBOMs (Software Bill of Materials)** in the CD pipeline.
+* **Pipeline Protection:** Implementing **Continuous Integration (CI)** and **Continuous Deployment (CD)** via **GitHub Actions**.
+* **Risk Reduction:** Integrating automated security scanning via **OpenSSF Scorecard**.
 
-2. Ensure you have the correct runtime environment
+---
 
-        Example: Python 3.x or Node.js 14+
+## ⚙️ Installation and Setup
 
-        Make sure the package manager (e.g., pip, npm) is installed
-3. Install dependencies
-        # For Python projects
-        pip install -r requirements.txt
+This project uses **Poetry** for dependency management. Ensure you have **Python 3.10+** and **Poetry** installed globally before proceeding.
 
-Dependencies
-
-        Primary dependencies:
-
-        Runtime: Node.js 16+ or Python 3.10+ (depending on project)
-
-        Key libraries (examples):
-
-        express
-
-        lodash
-
-        requests
-
-        pytest
-
-Build / tooling dependencies:
-
-        webpack
-
-        babel
-
-        docker
-
-        gradle or maven (if applicable)
-
-Security and Supply Chain Tools:
-
-        Dependency scanning
-
-        Artifact signing
-
-        CI/CD provenance tracking
-
-Author
-
-Created by GFS7337
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1.git](https://github.com/gfs7337/Software-Supply-Chain-Security-Assignment-1.git)
+cd Software-Supply-Chain-Security-Assignment-1
