@@ -1,18 +1,9 @@
 import subprocess
 
 
-def test_scan_with_fail_flag():
+def test_missing_repo_path():
     result = subprocess.run(
-        [
-            "trufflehog",
-            "git",
-            "file://.",
-            "--no-verification",
-            "--since-commit",
-            "HEAD",
-            "--fail",
-        ],
-        capture_output=True,
-        text=True,
+        ["trufflehog", "git"], capture_output=True, text=True
     )
-    assert result.returncode in [0, 1]
+    assert result.returncode != 0
+    assert "fatal: repository 'git' does not exist" in result.stderr.lower()

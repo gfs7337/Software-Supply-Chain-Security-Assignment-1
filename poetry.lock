@@ -633,6 +633,50 @@ pycodestyle = ">=2.14.0,<2.15.0"
 pyflakes = ">=3.4.0,<3.5.0"
 
 [[package]]
+name = "gitdb"
+version = "4.0.12"
+description = "Git Object Database"
+optional = false
+python-versions = ">=3.7"
+groups = ["dev"]
+files = [
+    {file = "gitdb-4.0.12-py3-none-any.whl", hash = "sha256:67073e15955400952c6565cc3e707c554a4eea2e428946f7a4c162fab9bd9bcf"},
+    {file = "gitdb-4.0.12.tar.gz", hash = "sha256:5ef71f855d191a3326fcfbc0d5da835f26b13fbcba60c32c21091c349ffdb571"},
+]
+
+[package.dependencies]
+smmap = ">=3.0.1,<6"
+
+[[package]]
+name = "gitdb2"
+version = "4.0.2"
+description = "A mirror package for gitdb"
+optional = false
+python-versions = "*"
+groups = ["dev"]
+files = [
+    {file = "gitdb2-4.0.2-py3-none-any.whl", hash = "sha256:a1c974e5fab8c2c90192c1367c81cbc54baec04244bda1816e9c8ab377d1cba3"},
+    {file = "gitdb2-4.0.2.tar.gz", hash = "sha256:0986cb4003de743f2b3aba4c828edd1ab58ce98e1c4a8acf72ef02760d4beb4e"},
+]
+
+[package.dependencies]
+gitdb = ">=4.0.1"
+
+[[package]]
+name = "gitpython"
+version = "3.0.6"
+description = "Python Git Library"
+optional = false
+python-versions = ">=3.4"
+groups = ["dev"]
+files = [
+    {file = "GitPython-3.0.6-py3-none-any.whl", hash = "sha256:5b5b7b29baa27680a7dff85f171a251d48ac37c5f04cba15d381b56991cc7a48"},
+]
+
+[package.dependencies]
+gitdb2 = ">=2.0.0"
+
+[[package]]
 name = "google-ai-generativelanguage"
 version = "0.6.15"
 description = "Google Ai Generativelanguage API client library"
@@ -1772,6 +1816,18 @@ files = [
 ]
 
 [[package]]
+name = "smmap"
+version = "5.0.2"
+description = "A pure Python implementation of a sliding window memory map manager"
+optional = false
+python-versions = ">=3.7"
+groups = ["dev"]
+files = [
+    {file = "smmap-5.0.2-py3-none-any.whl", hash = "sha256:b30115f0def7d7531d22a0fb6502488d879e75b260a9db4d0819cfb25403af5e"},
+    {file = "smmap-5.0.2.tar.gz", hash = "sha256:26ea65a03958fa0c8a1c7e8c7a58fdc77221b8910f6be2131affade476898ad5"},
+]
+
+[[package]]
 name = "stevedore"
 version = "5.6.0"
 description = "Manage dynamic plugins for Python applications"
@@ -1871,6 +1927,34 @@ slack = ["slack-sdk"]
 telegram = ["requests"]
 
 [[package]]
+name = "trufflehog"
+version = "2.2.1"
+description = "Searches through git repositories for high entropy strings, digging deep into commit history."
+optional = false
+python-versions = "*"
+groups = ["dev"]
+files = [
+    {file = "truffleHog-2.2.1-py2.py3-none-any.whl", hash = "sha256:ac411e29ffac06555cdc40ed1cbff0b3c74cb0ed26af2a0432ed15e61b94e6b5"},
+    {file = "truffleHog-2.2.1.tar.gz", hash = "sha256:7f0d09c8cda2a90ae42f81405e5944a3325d90a5842d2dde014471e4d65c71e4"},
+]
+
+[package.dependencies]
+GitPython = "3.0.6"
+truffleHogRegexes = "0.0.7"
+
+[[package]]
+name = "trufflehogregexes"
+version = "0.0.7"
+description = "These regexes power truffleHog."
+optional = false
+python-versions = "*"
+groups = ["dev"]
+files = [
+    {file = "truffleHogRegexes-0.0.7-py2.py3-none-any.whl", hash = "sha256:627e7cd246153135dea86bacd1253df262c525874f9008395ffe81eb63f92352"},
+    {file = "truffleHogRegexes-0.0.7.tar.gz", hash = "sha256:b81dfc60c86c1e353f436a0e201fd88edb72d5a574615a7858485c59edf32405"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 description = "Backported and Experimental Type Hints for Python 3.9+"
@@ -1931,4 +2015,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "ac96123a35c20dcaa79fc2c7139e8f96fcd291c5506a676fbd810bf1b18ef2cf"
+content-hash = "e796af81eb62481bd68989e5045e66e8884c6cdbc428bc5e6646f3a8d9d83d3f"

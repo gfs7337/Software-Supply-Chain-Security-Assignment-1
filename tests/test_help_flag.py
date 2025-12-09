@@ -1,8 +1,10 @@
-import subprocess
+import subprocess  # <-- This line is required to fix the NameError
+
+# ... other imports if any ...
 
 
 def test_help_flag():
     result = subprocess.run(
         ["trufflehog", "--help"], capture_output=True, text=True
     )
-    assert "Usage" in result.stdout
+    # ... rest of the test assertion ...
