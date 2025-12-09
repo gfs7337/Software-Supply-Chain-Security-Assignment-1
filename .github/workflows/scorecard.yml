@@ -26,10 +26,10 @@ jobs:
         with:
           # Scorecard requires a depth of 0 (full history) for accurate scanning
           persist-credentials: false
-          fetch-depth: 0 # <-- ADD THIS LINE for full history
+          fetch-depth: 0 
 
       - name: Run OpenSSF Scorecard
-        uses: ossf/scorecard-action
+        uses: ossf/scorecard-action@v2 # <-- CORRECTED LINE
         with:
           results_file: scorecard-results.json
           # Uploads the results to the 'Security' tab of your repo
